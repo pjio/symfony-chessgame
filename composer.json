@@ -1,0 +1,16 @@
+{
+    "name": "pjio/php-lambda-test",
+    "description": "Some code to test bref.sh for custom lambda runtime with PHP",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Carl-Philipp Jung",
+            "email": "php@philipp-jung.net"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "bref/bref": "^0.5.20"
+    }
+}
