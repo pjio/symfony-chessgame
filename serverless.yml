@@ -6,20 +6,29 @@ provider:
     name: aws
     region: eu-central-1
     runtime: provided
+    environment:
+      APP_ENV: prod
 
 plugins:
     - ./vendor/bref/bref
 
 functions:
     website:
-        handler: index.php
-        description: ''
+        handler: public/index.php
+        description: 'php-lambda-website'
         timeout: 28 # in seconds (API Gateway has a timeout of 29 seconds)
         layers:
-            - ${bref:layer.php-73-fpm}
+            - ${bref:layer.php-74-fpm}
         events:
             -   http: 'ANY /'
             -   http: 'ANY /{proxy+}'
+    console:
+        handler: bin/console
+        description: 'php-lambda-console'
+        timeout: 120 # in seconds
+        layers:
+            - ${bref:layer.php-74}
+            - ${bref:layer.console}
 
 # Exclude files from deployment
 package:

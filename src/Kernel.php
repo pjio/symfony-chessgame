@@ -30,6 +30,24 @@ class Kernel extends BaseKernel
         return \dirname(__DIR__);
     }
 
+    public function getLogDir()
+    {
+        if (getenv('LAMBDA_TASK_ROOT') !== false) {
+            return '/tmp/log/';
+        }
+
+        return parent::getLogDir();
+    }
+
+    public function getCacheDir()
+    {
+        if (getenv('LAMBDA_TASK_ROOT') !== false) {
+            return '/tmp/cache/' . $this->environment;
+        }
+
+        return parent::getCacheDir();
+    }
+
     protected function configureContainer(ContainerBuilder $container, LoaderInterface $loader): void
     {
         $container->addResource(new FileResource($this->getProjectDir().'/config/bundles.php'));
