@@ -1,0 +1,18 @@
+version: '3.7'
+
+services:
+  php-fpm:
+    volumes:
+      - ./:/app
+    build:
+      target: develop
+
+  nginx:
+    ports:
+      - 127.0.0.1:8080:80
+    volumes:
+      - ./:/app
+
+  mysql:
+    ports:
+      - 127.0.0.1:3306:3306

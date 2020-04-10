@@ -1,0 +1,26 @@
+version: '3.7'
+
+services:
+  php-fpm:
+    build:
+      context: ./
+      dockerfile: Dockerfile.php-fpm
+      target: release
+
+  nginx:
+    build:
+      context: ./
+      dockerfile: Dockerfile.nginx
+
+  mysql:
+    image: mysql
+    environment:
+      MYSQL_DATABASE: php_lambda
+      MYSQL_USER: php_lambda
+      MYSQL_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: verysecret
+    volumes:
+      - php_lambda:/var/lib/mysql:rw
+
+volumes:
+  php_lambda:
