@@ -30,6 +30,20 @@ functions:
             - ${bref:layer.php-74}
             - ${bref:layer.console}
 
+resources:
+      Resources:
+        usersTable:
+          Type: AWS::DynamoDB::Table
+          Properties:
+            TableName: chessgame
+            AttributeDefinitions:
+              - AttributeName: id
+                AttributeType: S
+            KeySchema:
+              - AttributeName: id
+                KeyType: HASH
+            BillingMode: "PAY_PER_REQUEST"
+
 # Exclude files from deployment
 package:
     exclude:

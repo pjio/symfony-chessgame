@@ -12,15 +12,5 @@ services:
       context: ./
       dockerfile: Dockerfile.nginx
 
-  mysql:
-    image: mysql
-    environment:
-      MYSQL_DATABASE: php_lambda
-      MYSQL_USER: php_lambda
-      MYSQL_PASSWORD: secret
-      MYSQL_ROOT_PASSWORD: verysecret
-    volumes:
-      - php_lambda:/var/lib/mysql:rw
-
-volumes:
-  php_lambda:
+  dynamodb:
+    image: amazon/dynamodb-local:latest

@@ -13,6 +13,6 @@ services:
     volumes:
       - ./:/app
 
-  mysql:
+  dynamodb:
     ports:
-      - 127.0.0.1:3306:3306
+      - 127.0.0.1:8000:8000
